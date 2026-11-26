@@ -1,5 +1,5 @@
 import json
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from .models import Sector
 from django.views.decorators.csrf import csrf_exempt
@@ -22,3 +22,12 @@ def sector_create_list_view(request):
             {'id': new_sector.id, 'name': new_sector.name},
             status=201
         )
+
+
+def sector_detail_view(request, pk):
+    sector = get_object_or_404(Sector, pk=pk)
+    data = {
+        "id": sector.id, 
+        "name": sector.name
+    }
+    return JsonResponse(data)
