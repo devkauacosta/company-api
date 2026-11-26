@@ -5,7 +5,7 @@ from .models import Sector
 from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt
-def sector_view(request):
+def sector_create_list_view(request):
     if request.method == "GET":
         sectors = Sector.objects.all()
         data = [
